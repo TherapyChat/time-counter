@@ -2,6 +2,7 @@ language: node_js
 node_js: stable
 dist: trusty
 addons:
+  sauce_connect: true
   firefox: latest
   chrome: stable
 cache:
@@ -16,3 +17,7 @@ script:
 - xvfb-run wct
 - if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then wct --plugin sauce --skip-plugin
   local; fi
+env:
+  global:
+  - secure: mhGQpfgmwDiNPtA4N2hXDf1plbvjQ7GI9j0SIJ2Op/ccuWejMFJKC5f4+60TOOqdhJI33/gDQyxkK4Xd1Z8ayK+AjYgpzF8/BRHsxtDh6zyB3RJAp3QXn67gl0gg91ywf+ZdvPnA8f1f4fbYduD9rxY/cwwPVQ791LgH1fMqARJCHRyzO36CNZW9HGNTSxK0aA7CplbEmukTYs19SbDdCpAcNU9TpAZgFUT7ReNVntMrwFFvwz9MxYOuwktXplD9xtWa7jB/8vmG1jWrRdXqC6P6+HLYfI7UZALcRo+uRHiedCBeyaJW7BX1YTVjDZoTcrEOdY0Z7MgLnVB8WHQNrEc323J06Mg9IkEw3Z4wrAL3n1DJUfyi6uhjfa1ujGEqN+NyvS5yHYy/1AVhOIHDyRRhQ3ervrbMrPxZSTsqbY3bQkOIvydnvfCR3pHGmVtPnlT4Bw2JqmEX7KqzynUhubaSSs79LGJEX8ex3Zmv6lRuQyMUHqivA4Ubgy71+og9GKJKtDwA32qLuQVLc05899wdoItCmrDcC66z9eE2sNYQjkFgS9+IaI5+eO4QNycgy48AhhanO3tJ2+sJgsnpZ6zJ82G9p2o1Sg88IP7YyhwBD/s7zFDn8ANXVXqExFNkJn5rhwUuHHFL8cb+AY0N3IImf1eW3Eb8lEjbAO/HMhY=
+  - secure: Y9LViqqWeJ51BBfzrJGMkgU02NQpJgEq5ESB5Qz8J8WLXk+iF9dcPMFmQpJHlNIPd+s5QQoE1nYr2aLQP11mB/aOFG+EK4YVrSuqs+fGDy7R/+kWel9TJYnAxBb8bhqK7+xwiR6Er38J5hR7+GZ0aIjK6ea2Y14il0dmPBKZUNRSWRd6Z+10F8Bjm1XwUjGn2A+zAii1tTR0WperNbwvbUXTQkuh4c8Mh4E+D6jPk+T6pFOL70IrM0k+mGKw8Z5Qrrp/A69r2ZAS5QlTxVFBWKgQZozmmPH0u2lGR8C55ZqsOw14juUieeC5+p27JwhD707dodzR4vAHGxLiFMAHnbxqhDmjHilEldqq+SCQLqlUIFtrsttq4B8QfHGaDwQz0Gi5NIiKZQhdL3wtItpVqc4XYUEzyaDtFOcuzSTXD3krTy42q5LiXL8uHRGJFJqmZYwL2cQ4Hp77orGTB4yitjGRt9jVFjscF09EME+XpkN3A2pIOwSYKFA9hswsVovtBhetKFDo3PhZ/n7Vw/Axi2wpPma/0bDFWiNtMIZyZC8ynVcRctGO/a3jw6S7rN13TBLc+xXpsFQmhRGA6w9lS2mUvd9MzbS1W1mSKoZvpiP60yJHRg/hfEp1iUwN8TBrESHTdjHVUNVhBbyJlMvX0X5Lw5wjZ8Z8Mq5WK9/WQLM=

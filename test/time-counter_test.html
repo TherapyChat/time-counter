@@ -35,8 +35,8 @@
         test('instantiating the element with default properties works', () => {
           const element = fixture('Basic')
           assert.equal(element.duration, 0)
-          const elementShadowRoot = element.shadowRoot
-          const displayElement = elementShadowRoot.querySelector('span')
+          const elementShadowRoot = element.shadowRoot || element.root
+          const displayElement = Polymer.dom(elementShadowRoot).querySelector('span')
           assert.equal(displayElement.innerHTML, '00:00:00')
         })
 
@@ -44,8 +44,8 @@
           // Create a test fixture
           const element = fixture('ChangedPropertyTestFixture')
           assert.equal(element.duration, 75000)
-          const elementShadowRoot = element.shadowRoot
-          const displayElement = elementShadowRoot.querySelector('span')
+          const elementShadowRoot = element.shadowRoot || element.root
+          const displayElement = Polymer.dom(elementShadowRoot).querySelector('span')
           assert.equal(displayElement.innerHTML, '00:01:15')
         })
       })

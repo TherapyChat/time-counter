@@ -20,6 +20,9 @@ Example of use:
     <link rel="import" href="time-counter.html">
     <next-code-block></next-code-block>
 
+    <button id="restart">Restart</button>
+    <button id="stop">Stop</button>
+
     <script>
       var timerElement = document.querySelector('#timer')
       var restartButton = document.querySelector('#restart')
@@ -44,8 +47,6 @@ Example of use:
 -->
 ```html
 <time-counter id="timer"></time-counter>
-<button id="restart">Restart</button>
-<button id="stop">Stop</button>
 ```
 
 ## Documentation

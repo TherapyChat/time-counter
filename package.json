@@ -9,7 +9,7 @@
   "scripts": {
     "build": "polymer build",
     "lint": "npm run lint:js && npm run lint:polymer",
-    "lint:js": "eslint --ext js,html .",
+    "lint:js": "eslint --ext js,html --ignore-path .gitignore .",
     "lint:polymer": "polymer lint",
     "start": "polymer serve",
     "test": "polymer test",

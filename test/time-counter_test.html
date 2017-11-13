@@ -26,21 +26,21 @@
     </test-fixture>
 
     <script>
-      suite('time-counter', () => {
-        test('instantiating the element with default properties works', () => {
-          const element = fixture('BasicTestFixture')
+      suite('time-counter', function () {
+        test('instantiating the element with default properties works', function () {
+          var element = fixture('BasicTestFixture')
           assert.equal(element.duration, 0)
-          const elementShadowRoot = element.shadowRoot
-          const displayElement = elementShadowRoot.querySelector('span')
+          var elementShadowRoot = element.shadowRoot
+          var displayElement = elementShadowRoot.querySelector('span')
           assert.equal(displayElement.innerHTML, '00:00:00')
         })
 
-        test('setting a property on the element works', () => {
+        test('setting a property on the element works', function () {
           // Create a test fixture
-          const element = fixture('ChangedPropertyTestFixture')
+          var element = fixture('ChangedPropertyTestFixture')
           assert.equal(element.duration, 75000)
-          const elementShadowRoot = element.shadowRoot
-          const displayElement = elementShadowRoot.querySelector('span')
+          var elementShadowRoot = element.shadowRoot
+          var displayElement = elementShadowRoot.querySelector('span')
           assert.equal(displayElement.innerHTML, '00:01:15')
         })
       })

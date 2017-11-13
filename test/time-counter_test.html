@@ -13,7 +13,7 @@
   </head>
   <body>
 
-    <test-fixture id="BasicTestFixture">
+    <test-fixture id="Basic">
       <template>
         <time-counter></time-counter>
       </template>
@@ -26,21 +26,26 @@
     </test-fixture>
 
     <script>
-      suite('time-counter', function () {
-        test('instantiating the element with default properties works', function () {
-          var element = fixture('BasicTestFixture')
+      suite('time-counter', () => {
+        test('instantiating the element works', () => {
+          const element = fixture('Basic')
+          assert.equal(element.is, 'time-counter')
+        })
+
+        test('instantiating the element with default properties works', () => {
+          const element = fixture('Basic')
           assert.equal(element.duration, 0)
-          var elementShadowRoot = element.shadowRoot
-          var displayElement = elementShadowRoot.querySelector('span')
+          const elementShadowRoot = element.shadowRoot
+          const displayElement = elementShadowRoot.querySelector('span')
           assert.equal(displayElement.innerHTML, '00:00:00')
         })
 
-        test('setting a property on the element works', function () {
+        test('setting a property on the element works', () => {
           // Create a test fixture
-          var element = fixture('ChangedPropertyTestFixture')
+          const element = fixture('ChangedPropertyTestFixture')
           assert.equal(element.duration, 75000)
-          var elementShadowRoot = element.shadowRoot
-          var displayElement = elementShadowRoot.querySelector('span')
+          const elementShadowRoot = element.shadowRoot
+          const displayElement = elementShadowRoot.querySelector('span')
           assert.equal(displayElement.innerHTML, '00:01:15')
         })
       })

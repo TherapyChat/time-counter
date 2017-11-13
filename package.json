@@ -1,0 +1,47 @@
+{
+  "name": "@therapychat/time-counter",
+  "version": "0.0.0",
+  "description": "Web Component to display an incremental timer",
+  "main": "time-counter.html",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "build": "polymer build",
+    "lint": "npm run lint:js && npm run lint:polymer",
+    "lint:js": "eslint --ext js,html .",
+    "lint:polymer": "polymer lint",
+    "start": "polymer serve",
+    "test": "polymer test",
+    "preversion": "npm run lint && npm test",
+    "version": "changelog-version && git add CHANGELOG.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TherapyChat/time-counter.git"
+  },
+  "keywords": [
+    "web-components",
+    "web-component",
+    "polymer",
+    "timer",
+    "time",
+    "counter"
+  ],
+  "author": "Alberto Fernandez <albertofdzm@gmail.com> (http://onlythepixel.com)",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/TherapyChat/time-counter/issues"
+  },
+  "homepage": "https://github.com/TherapyChat/time-counter#readme",
+  "devDependencies": {
+    "changelog-version": "^1.0.1",
+    "eslint": "^4.1.1",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-html": "^3.0.0",
+    "eslint-plugin-import": "^2.6.1",
+    "eslint-plugin-node": "^5.1.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1"
+  }
+}

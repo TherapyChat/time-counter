@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>time-counter demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../time-counter.html">
+
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles">
+      </style>
+    </custom-style>
+  </head>
+  <body>
+    <div class="vertical-section-container centered">
+      <h3>Basic time-counter demo</h3>
+      <demo-snippet>
+        <template>
+          <time-counter id="timer"></time-counter>
+
+          <button id="restart">Restart</button>
+          <button id="stop">Stop</button>
+
+          <script>
+            var timerElement = document.querySelector('#timer')
+            var restartButton = document.querySelector('#restart')
+            var stopButton = document.querySelector('#stop')
+
+            var restartTimer = function () {
+              timerElement.startDate = Date.now()
+            }
+
+            var stopTimer = function () {
+              timerElement.startDate = undefined
+            }
+
+            restartButton.addEventListener('click', restartTimer)
+            stopButton.addEventListener('click', stopTimer)
+
+            restartTimer()
+          </script>
+        </template>
+      </demo-snippet>
+    </div>
+  </body>
+</html>

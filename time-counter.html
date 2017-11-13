@@ -1,0 +1,85 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<dom-module id="time-counter">
+  <template>
+    <style>
+      :host {
+        display: inline-block;
+      }
+    </style>
+
+    <span>[[_formatDuration(duration)]]</span>
+  </template>
+
+  <script>
+    /**
+     * `time-counter`
+     * Web Component to display an incremental timer
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    Polymer({
+      is: 'time-counter',
+
+      properties: {
+        duration: {
+          type: Number,
+          value: 0
+        },
+        startDate: {
+          type: Number,
+          observer: '_handleStartDateChanged'
+        }
+      },
+
+      _calcDuration: function (startDate, endDate) {
+        startDate = startDate || Date.now()
+        endDate = endDate || Date.now()
+
+        return endDate - startDate
+      },
+
+      _formatDuration: function (duration) {
+        var durationInSeconds = Math.floor(duration / 1000)
+        var hours = Math.floor(durationInSeconds / 3600)
+        var minutes = Math.floor((durationInSeconds % 3600) / 60)
+        var seconds = durationInSeconds % 60
+
+        return this._formatNumber(hours) + ':' + this._formatNumber(minutes) + ':' + this._formatNumber(seconds)
+      },
+
+      _formatNumber: function (value) {
+        value = isNaN(value) ? '' : '' + value
+
+        while (value.length < 2) {
+          value = '0' + value
+        }
+
+        return value.substr(-length)
+      },
+
+      _handleStartDateChanged: function (startDate) {
+        if (startDate) {
+          this._updateDuration()
+          this._updateDurationDebounced()
+        } else if (this.isDebouncerActive('updateDuration')) {
+          this.cancelDebouncer('updateDuration')
+          this.duration = this.properties.duration.value
+        }
+      },
+
+      _updateDuration: function () {
+        this.duration = this._calcDuration(this.startDate)
+      },
+
+      _updateDurationDebounced: function () {
+        this.debounce('updateDuration', function () {
+          this._updateDuration()
+          this._updateDurationDebounced()
+        }, 1000)
+      }
+    })
+  </script>
+</dom-module>

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>time-counter test</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+
+    <link rel="import" href="../time-counter.html">
+  </head>
+  <body>
+
+    <test-fixture id="BasicTestFixture">
+      <template>
+        <time-counter></time-counter>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="ChangedPropertyTestFixture">
+      <template>
+        <time-counter duration="75000"></time-counter>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite('time-counter', () => {
+        test('instantiating the element with default properties works', () => {
+          const element = fixture('BasicTestFixture')
+          assert.equal(element.duration, 0)
+          const elementShadowRoot = element.shadowRoot
+          const displayElement = elementShadowRoot.querySelector('span')
+          assert.equal(displayElement.innerHTML, '00:00:00')
+        })
+
+        test('setting a property on the element works', () => {
+          // Create a test fixture
+          const element = fixture('ChangedPropertyTestFixture')
+          assert.equal(element.duration, 75000)
+          const elementShadowRoot = element.shadowRoot
+          const displayElement = elementShadowRoot.querySelector('span')
+          assert.equal(displayElement.innerHTML, '00:01:15')
+        })
+      })
+    </script>
+
+  </body>
+</html>

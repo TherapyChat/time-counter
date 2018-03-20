@@ -17,7 +17,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 
-## [UNRELEASED]
+## v1.1.0 - 2018-03-20
 ### Added
 - Added a new property `format` to format output
 

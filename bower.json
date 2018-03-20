@@ -21,7 +21,7 @@
   "license": "Apache-2.0",
   "homepage": "https://github.com/TherapyChat/time-counter",
   "dependencies": {
-    "polymer": "polymer/polymer#^1.9.2"
+    "polymer": "polymer/polymer#^1.11.3"
   },
   "devDependencies": {
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^2.0.0",

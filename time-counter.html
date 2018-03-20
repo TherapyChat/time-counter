@@ -8,7 +8,7 @@
       }
     </style>
 
-    <span>[[_formatDuration(duration)]]</span>
+    <span>[[_formatDuration(duration, format)]]</span>
   </template>
 
   <script>
@@ -24,13 +24,27 @@
       is: 'time-counter',
 
       properties: {
+        /**
+         * The current duration in milliseconds
+         */
         duration: {
           type: Number,
+          notify: true,
           value: 0
         },
+        /**
+         * If set the duration will adapt as if it sarts counting from that date
+         */
         startDate: {
           type: Number,
           observer: '_handleStartDateChanged'
+        },
+        /**
+         * Output format for duration
+         */
+        format: {
+          type: String,
+          value: 'hh:mm:ss'
         }
       },
 
@@ -41,23 +55,41 @@
         return endDate - startDate
       },
 
-      _formatDuration: function (duration) {
-        var durationInSeconds = Math.floor(duration / 1000)
-        var hours = Math.floor(durationInSeconds / 3600)
-        var minutes = Math.floor((durationInSeconds % 3600) / 60)
-        var seconds = durationInSeconds % 60
+      _formatDuration: function (duration, format) {
+        var formattedDuration = ''
 
-        return this._formatNumber(hours) + ':' + this._formatNumber(minutes) + ':' + this._formatNumber(seconds)
+        if (format) {
+          var durationInSeconds = Math.floor(duration / 1000)
+          var hours = Math.floor(durationInSeconds / 3600)
+          var minutes = Math.floor((durationInSeconds % 3600) / 60)
+          var seconds = durationInSeconds % 60
+
+          formattedDuration = format
+            .replace(/(h+)/g, function (match, group) {
+              return this._formatNumber(hours, group.length)
+            }.bind(this))
+            .replace(/(m+)/g, function (match, group) {
+              return this._formatNumber(minutes, group.length)
+            }.bind(this))
+            .replace(/(s+)/g, function (match, group) {
+              return this._formatNumber(seconds, group.length)
+            }.bind(this))
+        } else {
+          formattedDuration = this._formatNumber(hours) + ':' + this._formatNumber(minutes) + ':' + this._formatNumber(seconds)
+        }
+
+        return formattedDuration
       },
 
-      _formatNumber: function (value) {
+      _formatNumber: function (value, length) {
         value = isNaN(value) ? '' : '' + value
+        length = length !== undefined ? length : 2
 
-        while (value.length < 2) {
+        while (value.length < length) {
           value = '0' + value
         }
 
-        return value.substr(-2)
+        return value.substr(-length)
       },
 
       _handleStartDateChanged: function (startDate) {
@@ -78,7 +110,7 @@
         this.debounce('updateDuration', function () {
           this._updateDuration()
           this._updateDurationDebounced()
-        }, 1000)
+        }, 500)
       }
     })
   </script>

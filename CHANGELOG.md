@@ -17,6 +17,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 
+## [UNRELEASED]
+### Added
+- Added a new property `format` to format output
+
+
+
+
 ## v1.0.1 - 2017-11-13
 ### Fixed
 - Fix format number function

@@ -27,26 +27,50 @@
 
     <script>
       suite('time-counter', () => {
+        let element
+
+        setup(() => {
+          element = fixture('Basic')
+        })
+
         test('instantiating the element works', () => {
-          const element = fixture('Basic')
           assert.equal(element.is, 'time-counter')
         })
 
         test('instantiating the element with default properties works', () => {
-          const element = fixture('Basic')
-          assert.equal(element.duration, 0)
           const elementShadowRoot = element.shadowRoot || element.root
           const displayElement = Polymer.dom(elementShadowRoot).querySelector('span')
+
+          assert.equal(element.duration, 0)
           assert.equal(displayElement.innerHTML, '00:00:00')
         })
 
         test('setting a property on the element works', () => {
           // Create a test fixture
-          const element = fixture('ChangedPropertyTestFixture')
-          assert.equal(element.duration, 75000)
+          element = fixture('ChangedPropertyTestFixture')
           const elementShadowRoot = element.shadowRoot || element.root
           const displayElement = Polymer.dom(elementShadowRoot).querySelector('span')
+
+          assert.equal(element.duration, 75000)
           assert.equal(displayElement.innerHTML, '00:01:15')
+        })
+
+        suite('format', () => {
+          test('should format the output when changed', () => {
+            const elementShadowRoot = element.shadowRoot || element.root
+            const displayElement = Polymer.dom(elementShadowRoot).querySelector('span')
+
+            element.format = 'hh:mm'
+            expect(displayElement.innerHTML).to.equal('00:00')
+          })
+
+          test('should print default format when falsy', () => {
+            const elementShadowRoot = element.shadowRoot || element.root
+            const displayElement = Polymer.dom(elementShadowRoot).querySelector('span')
+
+            element.format = false
+            expect(displayElement.innerHTML).to.equal('00:00:00')
+          })
         })
       })
     </script>

@@ -17,7 +17,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 
-## [UNRELEASED]
+## v1.1.1 - 2018-03-20
 ### Changed
 - Update polymer version to v1.11.3
 
